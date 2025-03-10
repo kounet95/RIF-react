@@ -1,0 +1,64 @@
+Media service :
+Item: @Id
+     id;
+   Enum<ItemType> itemType;
+    Date createdAt;
+     Date updatedAt;
+     String title;
+     List<Tag> tags;
+   Interger sharing;
+
+podcast:
+
+`id` 
+ program_id` 
+ 
+  `file_name` 
+  `description` 
+  `image_name` ` 
+   item_Id
+
+
+
+
+news_letter:
+
+   `id`  
+  `content`
+   isHighlighted
+
+
+news:
+    private String content;
+
+    private String category;
+
+    private LocalDate publishedDate;
+
+    private String imageUrl;
+    private List<Media> media;
+
+Tag
+
+partage,
+video,image ,doc
+
+Users:
+commentaire:
+like:
+
+
+
+DDD event sourcing et driving CQRS 
+
+
+une partie command: on a la couche  et query recuperer les donne dans eventstore
+on le place dans notre base de donne 
+
+
+
+
+
+
+Program: 
+         name, description, image_name, 
