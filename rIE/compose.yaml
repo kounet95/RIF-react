@@ -1,18 +1,21 @@
 services:
-  oracle:
-    image: 'gvenzl/oracle-free:latest'
+  pgvector:
+    container_name: gestionRagDb
+    image: 'pgvector/pgvector:pg16'
     environment:
-      - 'ORACLE_PASSWORD=secret'
+      - POSTGRES_DB=gestionRagDb
+      - POSTGRES_USER=admin
+      - POSTGRES_PASSWORD=1234
+    volumes:
+      - agentic_rag_chatbot_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     ports:
-      - '1521'
-  postgres:
-    image: 'postgres:latest'
-    environment:
-      - 'POSTGRES_DB=mydatabase'
-      - 'POSTGRES_PASSWORD=secret'
-      - 'POSTGRES_USER=myuser'
-    ports:
-      - '5432'
+      - "5432:5432"
+    networks:
+      - agentic-chatbot-net
+
+
+
   zookeeper:
     image: confluentinc/cp-zookeeper:7.3.0
     container_name: zookeeper
@@ -29,3 +32,9 @@ services:
       - "9092:9092"
     depends_on:
       - zookeeper
+volumes:
+    agentic_rag_chatbot_data:
+
+networks:
+    agentic-chatbot-net:
+      driver: bridge
